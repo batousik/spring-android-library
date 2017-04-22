@@ -1,44 +1,32 @@
-group 'ru.batousik.springandroidlibrary'
-version '1.0.0'
+group "ru.batousik.springandroidlibrary"
+version "1.0.0"
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-
-defaultTasks 'clean', 'build'
-
-buildscript {
-    ext {
-        springBootVersion = '1.5.1.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
+apply plugin: "java"
+apply plugin: "org.springframework.boot"
 
 jar {
-    baseName = 'myoscaserver'
-    version = '0.0.9999'
+    baseName = "myoscaserver"
+    version = project.version
 }
 
-sourceCompatibility = 1.8
-
-repositories {
-    mavenLocal()
-    mavenCentral()
+// TODO
+springBoot {
+    mainClass = "com.example.Main"
 }
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-security'
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework.boot:spring-boot-starter-logging'
-    compile 'org.projectlombok:lombok'
-    compile 'io.jsonwebtoken:jjwt:0.7.0'
-    compile 'mysql:mysql-connector-java:6.0.5'
-    compile 'ru.batousik.springandroidlibrary:java-lib:1.0.0'
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
-}
+    // compile "ru.batousik.springandroidlibrary:java-lib:1.0.0" // local dependency?
+    compile project(":java-lib")
+    compile "org.springframework.boot:spring-boot-starter-security" // needs a version
+    compile "org.springframework.boot:spring-boot-starter-web" // needs a version
+    compile "org.springframework.boot:spring-boot-starter-data-jpa" // needs a version
+    compile "org.springframework.boot:spring-boot-starter-logging" // needs a version
+    compile "org.projectlombok:lombok" // needs a version
+    compile "io.jsonwebtoken:jjwt:0.7.0"
+    compile "mysql:mysql-connector-java:6.0.5"
 
+    testCompile "org.springframework.boot:spring-boot-starter-test" // needs a version
+}

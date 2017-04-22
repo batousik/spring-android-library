@@ -1,45 +1,4 @@
-
-
-def ANDROID_SUPPORT_DEPENDENCY_VERSION = '25.1.0'
-def DAGGER_DEPENDENCY_VERSION = '2.10'
-def OK_HTTP_DEPENDENCY_VERSION = '3.7.0'
-def RETROFIT_DEPENDENCY_VERSION = '2.1.0'
-def RETROFIT_JACKSON_DEPENDENCY_VERSION = '2.1.0'
-def BUTTER_KNIFE_DEPENDENCY_VERSION = '8.5.1'
-def JAVAX_ANNOTATION_JSR250_API_DEPENDENCY_VERSION = '1.0'
-def GREEN_ROBOT_EVENT_BUS_DEPENDENCY_VERSION = '3.0.0'
-def RX_JAVA_DEPENDENCY_VERSION = '2.0.5'
-def RX_ANDROID_JAVA_DEPENDENCY_VERSION = '2.0.1'
-
-defaultTasks 'clean', 'assembleDebug'
-
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath "net.ltgt.gradle:gradle-apt-plugin:0.9"
-        classpath "com.android.tools.build:gradle:2.3.1"
-    }
-}
-
-
-apply plugin: 'com.android.application'
-apply plugin: 'idea'
-
-
-repositories {
-    jcenter()
-    mavenLocal()
-    mavenCentral()
-}
-
-
-
+apply plugin: "com.android.application"
 
 android {
     compileSdkVersion 25
@@ -53,12 +12,13 @@ android {
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
 
-//        debug {
-//            buildConfigField "String", "PARSE_APPLICATION_ID", "\"1\""
-//            buildConfigField "String", "PARSE_API_KEY", "\"1\""
-//        }
+        //        debug {
+        //            buildConfigField "String", "PARSE_APPLICATION_ID", "\"1\""
+        //            buildConfigField "String", "PARSE_API_KEY", "\"1\""
+        //        }
 
         release {
             minifyEnabled true
@@ -69,40 +29,60 @@ android {
         }
     }
 
+    compileOptions {
+        // Needs to be java 7 for Android
+        sourceCompatibility = JavaVersion.VERSION_1_7
+        targetCompatibility = JavaVersion.VERSION_1_7
+    }
+
     packagingOptions {
-        pickFirst 'META-INF/LICENSE'
+        pickFirst "META-INF/LICENSE"
     }
 }
 
+def ANDROID_SUPPORT_DEPENDENCY_VERSION = "25.1.0"
+def DAGGER_DEPENDENCY_VERSION = "2.10"
+def OK_HTTP_DEPENDENCY_VERSION = "3.7.0"
+def RETROFIT_DEPENDENCY_VERSION = "2.1.0"
+def RETROFIT_JACKSON_DEPENDENCY_VERSION = "2.1.0"
+def BUTTER_KNIFE_DEPENDENCY_VERSION = "8.5.1"
+def JAVAX_ANNOTATION_JSR250_API_DEPENDENCY_VERSION = "1.0"
+def GREEN_ROBOT_EVENT_BUS_DEPENDENCY_VERSION = "3.0.0"
+def RX_JAVA_DEPENDENCY_VERSION = "2.0.5"
+def RX_ANDROID_JAVA_DEPENDENCY_VERSION = "2.0.1"
+
 dependencies {
-
-    // Add jars supplied
-
-    // compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    // Test related
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
-    androidTestCompile 'com.google.code.findbugs:jsr305:3.0.1'
-    androidTestCompile "com.android.support:support-annotations:${ANDROID_SUPPORT_DEPENDENCY_VERSION}" androidTestCompile 'com.android.support.test:runner:0.5'
-    // My dependencies
-    compile 'ru.batousik.springandroidlibrary:java-lib:1.0.0'
-    // Android support libraries
-    compile "com.android.support:appcompat-v7:${ANDROID_SUPPORT_DEPENDENCY_VERSION}" compile "com.android.support:design:${ANDROID_SUPPORT_DEPENDENCY_VERSION}" compile "com.android.support:support-annotations:${ANDROID_SUPPORT_DEPENDENCY_VERSION}"
-    // An HTTP & HTTP/2 client for Android and Java applications
+    // compile "ru.batousik.springandroidlibrary:java-lib:1.0.0" // local dependency?
+    compile project(":java-lib")
+    compile "com.android.support:appcompat-v7:${ANDROID_SUPPORT_DEPENDENCY_VERSION}"
+    compile "com.android.support:design:${ANDROID_SUPPORT_DEPENDENCY_VERSION}"
+    compile "com.android.support:support-annotations:${ANDROID_SUPPORT_DEPENDENCY_VERSION}"
     compile "com.squareup.okhttp3:okhttp:${OK_HTTP_DEPENDENCY_VERSION}"
-    // Retrofit: A type-safe HTTP client for Android and Java
-    compile "com.squareup.retrofit2:retrofit:${RETROFIT_DEPENDENCY_VERSION}" compile "com.squareup.retrofit2:converter-jackson:${RETROFIT_JACKSON_DEPENDENCY_VERSION}"
-    // Butterknife: Field and method binding for Android views
-    compile "com.jakewharton:butterknife:${BUTTER_KNIFE_DEPENDENCY_VERSION}" annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTER_KNIFE_DEPENDENCY_VERSION}"
-    // Dagger DI
-    compile "com.google.dagger:dagger:${DAGGER_DEPENDENCY_VERSION}" annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_DEPENDENCY_VERSION}" compile "com.google.dagger:dagger-android:${DAGGER_DEPENDENCY_VERSION}" annotationProcessor "com.google.dagger:dagger-android-processor:${DAGGER_DEPENDENCY_VERSION}" compile "com.google.dagger:dagger-android-support:${DAGGER_DEPENDENCY_VERSION}" compile "com.google.dagger:dagger:${DAGGER_DEPENDENCY_VERSION}" annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_DEPENDENCY_VERSION}" provided "javax.annotation:jsr250-api:${JAVAX_ANNOTATION_JSR250_API_DEPENDENCY_VERSION}"
-    // Event bus
+    compile "com.squareup.retrofit2:retrofit:${RETROFIT_DEPENDENCY_VERSION}"
+    compile "com.squareup.retrofit2:converter-jackson:${RETROFIT_JACKSON_DEPENDENCY_VERSION}"
+    compile "com.jakewharton:butterknife:${BUTTER_KNIFE_DEPENDENCY_VERSION}"
+    compile "com.google.dagger:dagger:${DAGGER_DEPENDENCY_VERSION}"
+    compile "com.google.dagger:dagger-android:${DAGGER_DEPENDENCY_VERSION}"
+    compile "com.google.dagger:dagger-android-support:${DAGGER_DEPENDENCY_VERSION}"
+    compile "com.google.dagger:dagger:${DAGGER_DEPENDENCY_VERSION}"
     compile "org.greenrobot:eventbus:${GREEN_ROBOT_EVENT_BUS_DEPENDENCY_VERSION}"
-    // RxJava a library for composing asynchronous and event-based programs by using observable sequences.
-    compile "io.reactivex.rxjava2:rxjava:${RX_JAVA_DEPENDENCY_VERSION}" compile "io.reactivex.rxjava2:rxandroid:${RX_ANDROID_JAVA_DEPENDENCY_VERSION}"
-    // Google Guava for preconditions
-    compile 'com.google.guava:guava:20.0'
+    compile "io.reactivex.rxjava2:rxjava:${RX_JAVA_DEPENDENCY_VERSION}"
+    compile "io.reactivex.rxjava2:rxandroid:${RX_ANDROID_JAVA_DEPENDENCY_VERSION}"
+    // compile "com.google.guava:guava:20.0" // should not use this in an anroid app
+
+    annotationProcessor "com.jakewharton:butterknife-compiler:${BUTTER_KNIFE_DEPENDENCY_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_DEPENDENCY_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_DEPENDENCY_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:${DAGGER_DEPENDENCY_VERSION}"
+
+    provided "javax.annotation:jsr250-api:${JAVAX_ANNOTATION_JSR250_API_DEPENDENCY_VERSION}"
+
+    androidTestCompile "com.google.code.findbugs:jsr305:3.0.1"
+    androidTestCompile "com.android.support:support-annotations:${ANDROID_SUPPORT_DEPENDENCY_VERSION}"
+    androidTestCompile "com.android.support.test:runner:0.5"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:2.2.2", {
+        exclude group: "com.android.support", module: "support-annotations"
+    })
+
+    testCompile "junit:junit:4.12"
 }

@@ -2,6 +2,7 @@ package ru.batousik.springandroidlibrary.android;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import springandroidlibrary.batousik.ru.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
