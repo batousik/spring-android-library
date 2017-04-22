@@ -1,7 +1,10 @@
 package ru.batousik.springandroidlibrary.javalib;
 
-/**
- * Created by Tsar on 22.04.2017.
- */
+import org.junit.Test;
+
 public class JavaLIbJUnitTest {
+    @Test
+    public void myTest() {
+
+    }
 }
