@@ -1,4 +1,4 @@
-package springandroidlibrary.batousik.ru.myapplication;
+package ru.batousik.springandroidlibrary.android;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
