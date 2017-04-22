@@ -1,0 +1,30 @@
+apply plugin: "java"
+apply plugin: "maven-publish"
+
+group "ru.batousik.springandroidlibrary"
+version "1.0.0"
+
+jar {
+    baseName = "java-lib"
+    version = project.version
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
+}
+
+// Needs to be java 7 for Android
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+dependencies {
+    testCompile "junit:junit:4.12"
+}

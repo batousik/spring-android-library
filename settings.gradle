@@ -1,5 +1,5 @@
-rootProject.name = 'springandroidlibrary'
+rootProject.name = "spring-android-library"
 
-include ':javalib'
-include ':android'
-include ':spring'
+include ":android"
+include ":java-lib"
+include ":spring"
