@@ -11,7 +11,7 @@ jar {
 
 // TODO
 springBoot {
-    mainClass = "com.example.Main"
+    mainClass = "ru.batousik.springandroidlibrary.spring.DemoApplication"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

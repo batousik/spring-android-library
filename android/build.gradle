@@ -4,6 +4,10 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
+    lintOptions {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "ru.batousik.springandroidlibrary.android"
         minSdkVersion 14
@@ -40,7 +44,7 @@ android {
     }
 }
 
-def ANDROID_SUPPORT_DEPENDENCY_VERSION = "25.1.0"
+def ANDROID_SUPPORT_DEPENDENCY_VERSION = "25.3.1"
 def DAGGER_DEPENDENCY_VERSION = "2.10"
 def OK_HTTP_DEPENDENCY_VERSION = "3.7.0"
 def RETROFIT_DEPENDENCY_VERSION = "2.1.0"

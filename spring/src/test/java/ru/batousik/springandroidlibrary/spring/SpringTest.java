@@ -2,6 +2,8 @@ package ru.batousik.springandroidlibrary.spring;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Instrumentation test, which will execute on an Android device.
  *
@@ -11,6 +13,6 @@ import org.junit.Test;
 public class SpringTest {
     @Test
     public void myTest() throws Exception {
-        // Context of the app under test.
+        assertEquals(4, 2 + 2);
     }
 }
