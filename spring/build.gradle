@@ -9,6 +9,11 @@ jar {
     version = project.version
 }
 
+// TODO
+springBoot {
+    mainClass = "com.example.Main"
+}
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -25,4 +30,3 @@ dependencies {
 
     testCompile "org.springframework.boot:spring-boot-starter-test" // needs a version
 }
-
